@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h4 id="page-heading">
+            <span jhiTranslate="pghApp.zonal.home.title">Zonals</span>
+            <button id="jh-create-entity" class="btn btn-info btn-sm float-right jh-create-entity create-zonal" [routerLink]="['/zonal/new']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span  jhiTranslate="pghApp.zonal.home.createLabel">
+                Create new Zonal
+                </span>
+            </button>
+        </h4>
+        <jhi-alert></jhi-alert>
+        <br/>
+        <div class="table-responsive" *ngIf="zonals">
+            <table class="table table-striped table-bordered" style="font-size: 14px;">
+                <!-- border border-secondary -->
+                <thead>
+                    <!-- class="navbar-color text-white"  -->
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <!-- <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
+                        <th>#</th>
+                        <th jhiSortBy="zoneName"><span jhiTranslate="pghApp.zonal.zoneName">Zone Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th jhiSortBy="zoneAddress"><span jhiTranslate="pghApp.zonal.zoneAddress">Zone Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <!-- <th jhiSortBy="zoneIncharge"><span jhiTranslate="pghApp.zonal.zoneIncharge">Zone Incharge</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th jhiSortBy="status"><span jhiTranslate="pghApp.zonal.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th jhiSortBy="createdBy"><span jhiTranslate="pghApp.zonal.createdBy">Created By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th jhiSortBy="modifiedBy"><span jhiTranslate="pghApp.zonal.modifiedBy">Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
+                        <th jhiSortBy="createdAt"><span jhiTranslate="pghApp.zonal.createdAt">Created At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <!-- <th jhiSortBy="updatedAt"><span jhiTranslate="pghApp.zonal.updatedAt">Updated At</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let zonal of zonals ;trackBy: trackId; let i = index">
+                    <!-- <td><a [routerLink]="['/zonal', zonal.id, 'view' ]">{{zonal.id}}</a></td> -->
+                    <td>{{i+1}}</td>
+                    <td>{{zonal.zoneName}}</td>
+                    <td>{{zonal.zoneAddress}}</td>
+                    <!-- <td>{{zonal.zoneIncharge}}</td>
+                    <td>{{zonal.status}}</td>
+                    <td>{{zonal.createdBy}}</td>
+                    <td>{{zonal.modifiedBy}}</td> -->
+                    <td>{{zonal.createdAt | date:'medium'}}</td>
+                    <!-- <td>{{zonal.updatedAt | date:'medium'}}</td> -->
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <!-- <button type="submit"
+                                    [routerLink]="['/zonal', zonal.id, 'view' ]"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button> -->
+                            <button type="submit"
+                                    [routerLink]="['/zonal', zonal.id, 'edit']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                <!-- <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span> -->
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/', { outlets: { popup: 'zonal/'+ zonal.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                                <!-- <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span> -->
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="zonals && zonals.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

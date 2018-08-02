@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "selfId",
+            "otherEntityName": "pickListValue",
+            "otherEntityRelationshipName": "pickValue"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "varietys",
+            "otherEntityName": "batch",
+            "otherEntityRelationshipName": "pickListVariety"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "categorys",
+            "otherEntityName": "batch",
+            "otherEntityRelationshipName": "pickListCategory"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pickList",
+            "otherEntityName": "pickList",
+            "otherEntityField": "pickListName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pickValue",
+            "otherEntityName": "pickListValue",
+            "otherEntityField": "pickListValue"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pickListValue",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180731091734",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "pick_list_value",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

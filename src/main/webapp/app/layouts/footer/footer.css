@@ -1,0 +1,30 @@
+.footer ul li {
+    list-style-type: none;
+    font-size:14px;
+    padding-top:5px;
+    color : #fff;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.footer {
+    text-align:center;
+    background-color: rgb(80, 160, 127);
+}
+p{
+    font-size:12px;
+    padding-top:5px;
+    color : #fff;
+}
+.footer_above {
+    background-color: rgb(80, 160, 127);
+}
+
+.footer_above ul li {
+    list-style-type: none;
+    display:block;
+    font-size:14px;
+    padding-top:5px;
+    color : #fff;
+    font-family: "Times New Roman", Times, serif;
+}
+

@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="batch">
+            <h4><span jhiTranslate="pghApp.batch.detail.title">Batch</span> {{batch.batchName}}</h4>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="pghApp.batch.nursery">Nursery</span></dt>
+                <dd>
+                    <div *ngIf="batch.nurseryId">
+                        <a [routerLink]="['/nursery', batch.nurseryId, 'view']">{{batch.nurseryNurseryName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.pickListVariety">Pick List Variety</span></dt>
+                <dd>
+                    <div *ngIf="batch.pickListVarietyId">
+                        <a [routerLink]="['/pick-list-value', batch.pickListVarietyId, 'view']">{{batch.pickListVarietyPickListValue}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.pickListCategory">Pick List Category</span></dt>
+                <dd>
+                    <div *ngIf="batch.pickListCategoryId">
+                        <a [routerLink]="['/pick-list-value', batch.pickListCategoryId, 'view']">{{batch.pickListCategoryPickListValue}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.batchNo">Batch No</span></dt>
+                <dd>
+                    <span>{{batch.batchNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.batchName">Batch Name</span></dt>
+                <dd>
+                    <span>{{batch.batchName}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.quantity">Quantity</span></dt>
+                <dd>
+                    <span>{{batch.quantity}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.motherBed">Mother Bed</span></dt>
+                <dd>
+                    <span>{{batch.motherBed}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.showingType">Showing Type</span></dt>
+                <dd>
+                    <span>{{batch.showingType}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.sowingDate">Sowing Date</span></dt>
+                <dd>
+                    <span>{{batch.sowingDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.closedDate">Closed Date</span></dt>
+                <dd>
+                    <span>{{batch.closedDate}}</span>
+                </dd>
+                <!-- <dt><span jhiTranslate="pghApp.batch.status">Status</span></dt>
+                <dd>
+                    <span>{{batch.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{batch.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.modifiedBy">Modified By</span></dt>
+                <dd>
+                    <span>{{batch.modifiedBy}}</span>
+                </dd> -->
+                <dt><span jhiTranslate="pghApp.batch.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{batch.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="pghApp.batch.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{batch.updatedAt}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info btn-sm">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/batch', batch.id, 'edit']"
+                    class="btn btn-primary btn-sm">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

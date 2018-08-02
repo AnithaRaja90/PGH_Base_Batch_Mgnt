@@ -1,0 +1,112 @@
+
+entity Zonal {
+	Id Long,
+    ZoneName String required,
+    ZoneAddress String,
+    ZoneIncharge String,
+    Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity Sector {
+	Id Long,
+    SectorName String required,
+    SectorAddress String,
+    SectorIncharge String,
+    Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity Nursery {
+	Id Long,
+    NurseryName String required,
+    NurseryAddress String,
+    NurseryIncharge String,
+    Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity PickList {
+    Id Long,
+    PickListName String required,
+    Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity PickListValue {
+	Id Long,
+    PickListValue String required,
+    SelfId Long,
+    Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity Batch {
+	Id Long,
+    BatchNo String required,
+    BatchName String required,
+    Quantity Long required,
+    MotherBed String,
+    ShowingType Integer required,
+    SowingDate LocalDate required
+    ClosedDate LocalDate
+	Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity Damage {
+	Id Long,
+    NoOfQuantity Long required,
+    Description String,
+    Date LocalDate required,
+	Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+entity ShadeArea {
+	Id Long,
+    NoOfSeedlings Long required,
+    Date LocalDate required,
+	Status Integer,
+    CreatedBy Long,
+    ModifiedBy Long,
+    CreatedAt Instant,
+    UpdatedAt Instant
+}
+
+relationship OneToMany {
+   Zonal{sectors} to Sector{zonal(ZoneName)},
+   Sector{nurserys} to Nursery{sector(SectorName)},
+   PickList{pickListValue} to PickListValue{pickList(PickListName)},
+   PickListValue{selfId} to PickListValue{pickValue(pickListValue)},
+   Batch{damage} to Damage{batch(BatchName)},
+   Batch{shadeArea} to ShadeArea{batch(BatchName)},
+   Nursery{batchs} to Batch{nursery(NurseryName)},
+   PickListValue{varietys} to Batch{pickListVariety(PickListValue)},
+   PickListValue{categorys} to Batch{pickListCategory(PickListValue)}
+}
+
+paginate Zonal, Sector, Nursery, PickList, PickListValue, Batch, Damage, ShadeArea with pagination
+dto * with mapstruct
+service all with serviceImpl
